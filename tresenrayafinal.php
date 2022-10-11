@@ -1,10 +1,18 @@
 <?php
-function hasWon($tab)
+
+function hasWon($tab,$fila,$columna)
 {
-    $res=array_filter($tab,fn($i)=>$tab );
+    $cond=true;
+    if($tab[$fila][0] == $tab[$fila][1]  && $tab[$fila][1] ==  $tab[$fila][2] && $tab[$fila][0]!=" " ){
+        $cond=false;
+    }else if($tab[0][$columna] == $tab[1][$columna] && $tab[1][$columna] ==  $tab[2][$columna]  && $tab[0][$columna]!=" "){
+        $cond=false;
+    }else if($tab[0][0] == $tab[1][1] &&  $tab[1][1] ==  $tab[2][2]  && $tab[1][1]!=" "){
+        $cond=false;
+    }
+    return $cond;
 }
 
-//jugador=0 es el primer jugador y jugador=1 es el segundo jugador
 $jugador=true;
 $tablero=array(
     array(" "," "," "),
@@ -27,14 +35,14 @@ do {
             } else {
                 $tablero[$valor1][$valor2]= "O" ;
                 $jugador = true;
-            }
-        }
-    }
-    /* if (array_filter($tablero,fn())
-    ){
+            } $cond=hasWon($tablero,$valor1,$valor2);
 
-    }*/
-    echo
+        }
+   
+    
+}
+
+echo
     "+-----+-----+-----+ "."\n".
     "|  ".$tablero[0][0]."  |  ".$tablero[0][1]."  |  ".$tablero[0][2]."  |"."\n" .
     "+-----+-----+-----+ "."\n".
@@ -43,8 +51,10 @@ do {
     "|  ".$tablero[2][0]."  |  ".$tablero[2][1]."  |  ".$tablero[2][2]."  |"."\n" .
     "+-----+-----+-----+ "."\n";
 
+
+
 } while ($cond);
 
-
+echo $jugador==true ? "Juego terminado, ha ganado Jugador: O" : "Juego terminado, ha ganado Jugador: X ";
 
 
