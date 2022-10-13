@@ -12,8 +12,22 @@ function hasWon($tab,$fila,$columna)
         $cond=false;
     }else if($tab[0][0] == $tab[1][1] &&  $tab[1][1] ==  $tab[2][2]  && $tab[1][1]!=" "){
         $cond=false;
+    }else if($tab[0][2] == $tab[1][1] &&  $tab[1][1] ==  $tab[2][0]  && $tab[1][1]!=" "){
+        $cond=false;
     }
     return $cond;
+}
+
+function printMap($tab)
+{
+echo
+    "+-----+-----+-----+ "."\n".
+    "|  ".$tab[0][0]."  |  ".$tab[0][1]."  |  ".$tab[0][2]."  |"."\n" .
+    "+-----+-----+-----+ "."\n".
+    "|  ".$tab[1][0]."  |  ".$tab[1][1]."  |  ".$tab[1][2]."  |"."\n" .
+    "+-----+-----+-----+ "."\n".
+    "|  ".$tab[2][0]."  |  ".$tab[2][1]."  |  ".$tab[2][2]."  |"."\n" .
+    "+-----+-----+-----+ "."\n";
 }
 
 /*
@@ -51,26 +65,18 @@ do {
         Se comprueba o empate o si ha ganado.
         */
         $cond=hasWon($tablero,$valor1,$valor2);
-        if ($cont>=8 && $cond==true){
+        if ($cont>=9 && $cond==true){
             $empate=true;
             $cond=false;
         }       
    } 
    
-
-    $valor1=null;
-    $valor2=null;
+$valor1=null;
+$valor2=null;
 /*
 Print de el tablero.
 */
-echo
-    "+-----+-----+-----+ "."\n".
-    "|  ".$tablero[0][0]."  |  ".$tablero[0][1]."  |  ".$tablero[0][2]."  |"."\n" .
-    "+-----+-----+-----+ "."\n".
-    "|  ".$tablero[1][0]."  |  ".$tablero[1][1]."  |  ".$tablero[1][2]."  |"."\n" .
-    "+-----+-----+-----+ "."\n".
-    "|  ".$tablero[2][0]."  |  ".$tablero[2][1]."  |  ".$tablero[2][2]."  |"."\n" .
-    "+-----+-----+-----+ "."\n";
+printMap($tablero);
 
 } while ($cond);
 
